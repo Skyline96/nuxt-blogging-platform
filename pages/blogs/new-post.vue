@@ -8,6 +8,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: ['authenticated'],
+})
+
 const title = ref("")
 const content = ref("")
 </script>
