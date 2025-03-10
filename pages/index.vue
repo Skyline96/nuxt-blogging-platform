@@ -8,14 +8,5 @@
 </template>
 
 <script setup>
-const blogPosts = [
-  { id: 1, title: "First Post", img: "/images/img_placeholder.png", description: "This is my first blog post.", author: "Admin" },
-  { id: 2, title: "Second Post", img: "/images/img_placeholder.png", description: "This is my first blog post.", author: "User A" },
-  { id: 3, title: "First Post", img: "/images/img_placeholder.png", description: "This is my first blog post.", author: "Admin" },
-  { id: 4, title: "Second Post", img: "/images/img_placeholder.png", description: "This is my first blog post.", author: "User A" },
-  { id: 5, title: "First Post", img: "/images/img_placeholder.png", description: "This is my first blog post.", author: "Admin" },
-  { id: 6, title: "Second Post", img: "/images/img_placeholder.png", description: "This is my first blog post.", author: "User A" },
-  { id: 7, title: "First Post", img: "/images/img_placeholder.png", description: "This is my first blog post.", author: "Admin" },
-  { id: 8, title: "Second Post", img: "/images/img_placeholder.png", description: "This is my first blog post.", author: "User A" }
-]
+const { data: blogPosts } = await useFetch(`/api/blogposts`)
 </script>
