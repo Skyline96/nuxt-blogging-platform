@@ -4,7 +4,7 @@
       <nav class="container mx-auto flex justify-between">
         <NuxtLink to="/" class="text-xl font-bold">Blogging Platform</NuxtLink>
         <div v-if="loggedIn" class="">
-          <NuxtLink to="/dashboard/posts" class="px-3">Hi, {{ user.name }}</NuxtLink>
+          <NuxtLink to="/dashboard/user-posts" class="px-3">Hi, {{ user.name }}</NuxtLink>
           <button @click="logout" class="px-3 py-1.5 border border-white rounded">Logout</button>
         </div>
         <div v-if="!loggedIn">

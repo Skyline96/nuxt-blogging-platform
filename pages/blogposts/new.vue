@@ -76,7 +76,7 @@ const onSubmit = async () => {
       //Refetch the posts
       await blogpostStore.fetchPosts()
       // Redirect to the home page
-      await navigateTo('/dashboard/posts')
+      await navigateTo('/dashboard/user-posts')
     })
     .catch((error) => {
       errorMessage.value = error.statusMessage;
