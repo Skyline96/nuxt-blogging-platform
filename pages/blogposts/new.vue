@@ -28,6 +28,7 @@ definePageMeta({
   middleware: ['authenticated'],
 })
 
+const blogpostStore = useBlogpostStore()
 const { user } = useUserSession()
 
 const newBlogpostData = reactive({
@@ -72,8 +73,10 @@ const onSubmit = async () => {
       newBlogpostData.title = ''
       newBlogpostData.content = ''
 
+      //Refetch the posts
+      await blogpostStore.fetchPosts()
       // Redirect to the home page
-      await navigateTo('/')
+      await navigateTo('/dashboard/posts')
     })
     .catch((error) => {
       errorMessage.value = error.statusMessage;
