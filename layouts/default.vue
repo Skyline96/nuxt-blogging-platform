@@ -8,8 +8,8 @@
           <button @click="logout" class="px-3 py-1.5 border border-white rounded">Logout</button>
         </div>
         <div v-if="!loggedIn">
-          <NuxtLink to="/login" class="px-3">Login</NuxtLink>
-          <NuxtLink to="/register" class="px-3">Register</NuxtLink>
+          <NuxtLink to="/auth/login" class="px-3">Login</NuxtLink>
+          <NuxtLink to="/auth/register" class="px-3">Register</NuxtLink>
         </div>
       </nav>
     </header>
@@ -27,6 +27,6 @@ const { loggedIn, user, clear: clearSession } = useUserSession()
 
 const logout = async () => {
   await clearSession()
-  await navigateTo('/login')
+  await navigateTo('/auth/login')
 }
 </script>

@@ -83,7 +83,7 @@ const onSubmit = async () => {
       newUserData.confirmPassword = ''
 
       // Redirect to the home page
-      await navigateTo('/login')
+      await navigateTo('/auth/login')
     })
     .catch((error) => {
       errorMessage.value = error.statusMessage;
