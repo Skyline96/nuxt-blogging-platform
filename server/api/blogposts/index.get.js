@@ -1,5 +1,6 @@
 import { initDB } from "../../db/database";
 
+// Return all blogposts
 export default defineEventHandler(async () => {
   const db = await initDB();
   const posts = await db.all(`

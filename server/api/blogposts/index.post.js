@@ -1,5 +1,6 @@
 import { initDB } from "../../db/database";
 
+// Create new blogpost
 export default defineEventHandler(async (event) => {
   try {
     const { success, data } = await readValidatedBody(event, body => newBlogpostFormSchema.safeParse(body));
