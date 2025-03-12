@@ -28,6 +28,11 @@ definePageMeta({
   middleware: ['authenticated'],
 })
 
+useSeoMeta({
+  title: 'Create blog post',
+  description: 'Create new blogpost on this platform'
+})
+
 const blogpostStore = useBlogpostStore()
 const { user } = useUserSession()
 

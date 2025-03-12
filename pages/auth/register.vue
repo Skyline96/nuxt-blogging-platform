@@ -21,7 +21,7 @@
           registerFormErrors.password }}</p>
       </div>
       <div class="relative mb-8">
-        <input v-model="newUserData.confirmPassword" type="password" placeholder="Confirm Password" 
+        <input v-model="newUserData.confirmPassword" type="password" placeholder="Confirm Password"
           class="w-full p-2 border border-gray-300 rounded" />
         <p v-show="registerFormErrors.confirmPassword" class="absolute inset-x-0 ps-1 pt-0.5 text-sm text-red-600">{{
           registerFormErrors.confirmPassword }}</p>
@@ -36,6 +36,11 @@
 </template>
 
 <script setup>
+useSeoMeta({
+  title: 'Register',
+  description: 'Register on this platform to write your own blogposts'
+})
+
 const newUserData = reactive({
   name: '',
   email: '',

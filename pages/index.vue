@@ -8,5 +8,9 @@
 </template>
 
 <script setup>
+useSeoMeta({
+  title: 'Home',
+  description: 'Check latest blog posts'
+})
 const blogpostStore = useBlogpostStore()
 </script>

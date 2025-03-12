@@ -24,6 +24,11 @@
 </template>
 
 <script setup>
+useSeoMeta({
+  title: 'Login',
+  description: 'Login to manage your blogposts'
+})
+
 const { fetch: refreshSession } = useUserSession()
 const loginCredentials = reactive({
   email: '',
