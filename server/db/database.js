@@ -1,7 +1,12 @@
 import { open } from "sqlite";
 import sqlite3 from "sqlite3";
 
+let dbInstance = null;
+
 export const initDB = async () => {
+    // Reuse existing database connection
+    if (dbInstance) return dbInstance;
+    
     try {
         const db = await open({
             filename: "./database.sqlite",
@@ -31,6 +36,7 @@ export const initDB = async () => {
         `);
 
         console.log("Database initialized successfully");
+        dbInstance = db;
         return db;
     } catch (error) {
         console.error("Failed to initialize database:", error);
