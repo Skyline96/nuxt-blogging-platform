@@ -11,6 +11,12 @@
 definePageMeta({
   middleware: ['authenticated'],
 })
+const { user} = useUserSession()
+
+useSeoMeta({
+  title: `${user.value.name}'s posts`,
+  description: 'See posts published by you'
+})
 
 const blogpostStore = useBlogpostStore()
 

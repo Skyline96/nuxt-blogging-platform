@@ -13,6 +13,10 @@ const blogpostStore = useBlogpostStore();
 // Check if the post is already in store
 const currentPost = blogpostStore.posts.find((post) => post.id == route.params.id)
 
+useSeoMeta({
+  title: () => currentPost.title,
+  description: () => `${currentPost.title} - Expolore this blogpost`
+})
 // onMounted(() => {
 //   blogpostStore.fetchPostById(route.params.id);
 // });
