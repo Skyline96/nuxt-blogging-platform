@@ -34,7 +34,6 @@ useSeoMeta({
 })
 
 const blogpostStore = useBlogpostStore()
-const { user } = useUserSession()
 
 const newBlogpostData = reactive({
   title: '',
@@ -46,7 +45,7 @@ const errorMessage = ref(null);
 
 const validateNewBlogpostFormData = () => {
   // Parse form data without throwing an error
-  const result = newBlogpostFormSchema.safeParse({ user_id: user.value.id, ...newBlogpostData });
+  const result = newBlogpostFormSchema.safeParse(newBlogpostData);
 
   // Display errors
   if (!result.success) {
@@ -72,7 +71,7 @@ const onSubmit = async () => {
   // Check if validation failed
   if (!validateNewBlogpostFormData()) return;
 
-  $fetch('/api/blogposts', { method: 'POST', body: { user_id: user.value.id, ...newBlogpostData } })
+  $fetch('/api/blogposts', { method: 'POST', body: newBlogpostData })
     .then(async () => {
       // Reset input fields
       newBlogpostData.title = ''
@@ -80,6 +79,7 @@ const onSubmit = async () => {
 
       //Refetch the posts
       await blogpostStore.fetchPosts()
+      await blogpostStore.fetchUserPosts()
       // Redirect to the home page
       await navigateTo('/dashboard/user-posts')
     })

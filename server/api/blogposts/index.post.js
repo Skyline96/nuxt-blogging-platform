@@ -4,6 +4,7 @@ import { initDB } from "../../db/database";
 export default defineEventHandler(async (event) => {
   try {
     const { success, data } = await readValidatedBody(event, body => newBlogpostFormSchema.safeParse(body));
+    const { user } = await requireUserSession(event)
 
     if (!success) {
       console.error("Title and content are required");
@@ -18,7 +19,7 @@ export default defineEventHandler(async (event) => {
     // Insert user data into database
     try {
       await db.run("INSERT INTO blogposts (user_id, title, content) VALUES (?, ?, ?)", [
-        data.user_id,
+        user.id,
         data.title,
         data.content
       ]);

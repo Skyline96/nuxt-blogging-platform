@@ -21,7 +21,7 @@ export const registerFormSchema = z.object({
   })
 
 export const newBlogpostFormSchema = z.object({
-  user_id: z.number().int().positive(),
+  // user_id: z.number().int().positive(),
   title: z.string().nonempty({ message: "Title is required" }),
   content: z.string().nonempty({ message: "Content is required." }).min(100, { message: "Content must be at least 100 characters long." })
 })
