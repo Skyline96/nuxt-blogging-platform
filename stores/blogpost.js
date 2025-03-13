@@ -49,7 +49,23 @@ export const useBlogpostStore = defineStore('blogpost', () => {
     }
   };
 
-  return { posts, userPosts, currentPost, loading, error, fetchPosts, fetchUserPosts, fetchPostById };
+  const deletePost = async (id) => {
+    try {
+      loading.value = true;
+      await $fetch(`/api/blogposts/${id}`, { method: "DELETE" });
+
+      // Remove the deleted post from posts & userPosts state
+      userPosts.value = userPosts.value.filter((post) => post.id !== id);
+      posts.value = posts.value.filter((post) => post.id !== id);
+    } catch (err) {
+      error.value = err.statusMessage;
+      console.error("Error deleting post:", err);
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  return { posts, userPosts, currentPost, loading, error, fetchPosts, fetchUserPosts, fetchPostById, deletePost };
 }, {
   persist: {
     storage: piniaPluginPersistedstate.cookies({
