@@ -10,14 +10,20 @@
 const route = useRoute();
 const blogpostStore = useBlogpostStore();
 
-// Check if the post is already in store
-const currentPost = blogpostStore.posts.find((post) => post.id == route.params.id)
+// Ensure posts are available before finding the post
+const currentPost = computed(() => {
+  return blogpostStore.posts.find((post) => post.id == route.params.id);
+});
+
+// If the post is not in store, fetch it from API
+watchEffect(() => {
+  if (!currentPost.value) {
+    blogpostStore.fetchPostById(route.params.id);
+  }
+});
 
 useSeoMeta({
-  title: () => currentPost.title,
-  description: () => `${currentPost.title} - Expolore this blogpost`
+  title: () => currentPost.value.title,
+  description: () => `${currentPost.value.title} - Expolore this blogpost`
 })
-// onMounted(() => {
-//   blogpostStore.fetchPostById(route.params.id);
-// });
 </script>
